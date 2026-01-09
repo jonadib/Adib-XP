@@ -92,7 +92,7 @@ const ToolbarButton = ({
         className="flex items-center gap-1 px-2 py-1 hover:bg-white/40 border border-transparent hover:border-black/10 rounded-sm group shrink-0"
     >
         <img src={icon} alt={label} className={`${iconSize} object-contain`} />
-        <span className="text-[11px] text-black group-hover:text-black hidden md:inline">{label}</span>
+        <span className="text-[11px] text-black group-hover:text-black">{label}</span>
     </button>
 );
 
@@ -173,7 +173,7 @@ const ModernXPToolbar = ({
                     <div className="w-7 h-7 bg-gray-500 rounded-full flex items-center justify-center shadow-sm border border-white/30 grayscale">
                         <ArrowLeft className="w-4 h-4 text-white" strokeWidth={3} />
                     </div>
-                    <span className="text-[11px] text-gray-600 hidden md:inline">Back</span>
+                    <span className="text-[11px] text-gray-600">Back</span>
                 </button>
 
                 <button
@@ -183,10 +183,10 @@ const ModernXPToolbar = ({
                     <div className="w-7 h-7 bg-gray-500 rounded-full flex items-center justify-center shadow-sm border border-white/30 grayscale">
                         <ArrowRight className="w-4 h-4 text-white" strokeWidth={3} />
                     </div>
-                    <span className="text-[11px] text-gray-600 hidden md:inline">Forward</span>
+                    <span className="text-[11px] text-gray-600">Forward</span>
                 </button>
 
-                <div className="h-6 w-[1px] bg-[#aca899] mx-1 hidden md:block" />
+                <div className="h-6 w-[1px] bg-[#aca899] mx-1" />
 
                 {/* Standard Actions with User Icons */}
                 <ToolbarButton
@@ -195,7 +195,7 @@ const ModernXPToolbar = ({
                     onClick={onHomeClick || (() => windowControls?.onExit())}
                     iconSize="w-8 h-8"
                 />
-                <div className="h-6 w-[1px] bg-[#aca899] mx-1 hidden md:block" />
+                <div className="h-6 w-[1px] bg-[#aca899] mx-1" />
                 <ToolbarButton
                     icon={iconFavorites}
                     label={favoritesLabel}
@@ -212,7 +212,7 @@ const ModernXPToolbar = ({
                         className="flex items-center gap-1 px-2 py-1 hover:bg-white/40 border border-transparent hover:border-black/10 rounded-sm shrink-0"
                     >
                         <img src={iconTheme} alt="Theme" className="w-4 h-4" />
-                        <span className="text-[11px] text-black hidden md:inline">Light/Dark</span>
+                        <span className="text-[11px] text-black">Light/Dark</span>
                     </button>
                 )}
             </div>
