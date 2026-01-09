@@ -30,14 +30,14 @@ const ShutdownDialog = ({
 
   return (
     <>
-      {/* Grayscale overlay - applies to everything behind */}
+      {/* Modal Overlay - Background turns dark and grays out slowly via body class */}
       <div
-        className="fixed inset-0 z-[19999] bg-white/10"
-        style={{ backdropFilter: 'grayscale(100%)' }}
+        className="fixed inset-0 z-[19999] bg-white/5"
         onClick={handleCancel}
       />
+      {/* Modal Overlays are invisible now, letting the slow body filter handle the visual transition */}
       <div
-        className="fixed inset-0 z-[20000] bg-black/40"
+        className="fixed inset-0 z-[19999]"
         onClick={handleCancel}
       />
 
