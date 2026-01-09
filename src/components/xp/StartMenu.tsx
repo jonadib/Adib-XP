@@ -103,7 +103,7 @@ const StartMenu = ({
         <div className="flex bg-white h-[420px] md:h-[450px] border-l border-r border-[#316ac5]">
 
           {/* LEFT COLUMN (White) */}
-          <div className="w-1/2 bg-white flex flex-col p-2 gap-1 overflow-y-auto overflow-x-hidden">
+          <div className="w-1/2 bg-white flex flex-col p-2 gap-1">
 
             {/* --- MY PROJECTS (Clickable) --- */}
             <div
@@ -165,7 +165,7 @@ const StartMenu = ({
           </div>
 
           {/* RIGHT COLUMN (Light Blue) */}
-          <div className="w-1/2 bg-[#d3e5fa] border-l border-[#95bdee] p-2 flex flex-col gap-1 text-[#00135b] overflow-y-auto overflow-x-hidden">
+          <div className="w-1/2 bg-[#d3e5fa] border-l border-[#95bdee] p-2 flex flex-col gap-1 text-[#00135b]">
 
             {/* Socials */}
             {[
@@ -203,25 +203,23 @@ const StartMenu = ({
                 <div
                   className={`${isMobile
                     ? 'fixed left-1/2 -translate-x-1/2 bottom-[80px] w-[240px] h-[380px] z-[7000]'
-                    : 'absolute left-[95%] -top-[190px] w-64'
+                    : 'absolute left-full top-0 w-56 z-[7000] ml-1'
                     } bg-white border border-[#95bdee] shadow-2xl rounded-sm overflow-hidden flex flex-col`}
-                  onClick={(e) => isMobile && e.stopPropagation()}
+                  onClick={(e) => e.stopPropagation()}
                 >
-                  {/* Submenu Header (Mobile Only) */}
-                  {isMobile && (
-                    <div className="h-8 flex items-center justify-between px-3 bg-gradient-to-r from-[#245edb] to-[#3f8cf3] text-white shrink-0">
-                      <span className="text-xs font-bold">Recently Used Programs</span>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setShowRecentlyUsed(false);
-                        }}
-                        className="w-5 h-5 bg-[#e04f14] flex items-center justify-center rounded-sm border border-white/40 active:brightness-90"
-                      >
-                        <span className="text-xs font-bold mt-[-1px]">✕</span>
-                      </button>
-                    </div>
-                  )}
+                  {/* Submenu Header */}
+                  <div className="h-7 flex items-center justify-between px-2 bg-gradient-to-r from-[#245edb] to-[#3f8cf3] text-white shrink-0">
+                    <span className="text-[10px] font-bold truncate">Recently Used</span>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setShowRecentlyUsed(false);
+                      }}
+                      className="w-4 h-4 bg-[#e04f14] flex items-center justify-center rounded-sm border border-white/40 active:brightness-90"
+                    >
+                      <span className="text-[10px] font-bold mt-[-1px]">✕</span>
+                    </button>
+                  </div>
 
                   <div className="flex-1 overflow-y-auto py-1">
                     {recentGroups.map((group, groupIdx) => (
@@ -236,7 +234,7 @@ const StartMenu = ({
                             onClick={() => window.open(`https://google.com/search?q=${app.title}`, '_blank')}
                           >
                             <img src={app.icon} alt="" className="w-4 h-4 object-contain" />
-                            <span className="text-xs whitespace-nowrap">{app.title}</span>
+                            <span className="text-[11px] whitespace-nowrap">{app.title}</span>
                           </div>
                         ))}
                       </div>
