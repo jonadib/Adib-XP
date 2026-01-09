@@ -203,7 +203,7 @@ const StartMenu = ({
                 <div
                   className={`${isMobile
                     ? 'fixed left-1/2 -translate-x-1/2 bottom-[80px] w-[240px] h-[380px] z-[7000]'
-                    : 'absolute left-full top-0 w-56 z-[7000] ml-1'
+                    : 'absolute left-full -top-[180px] w-56 z-[7000] ml-1'
                     } bg-white border border-[#95bdee] shadow-2xl rounded-sm overflow-hidden flex flex-col`}
                   onClick={(e) => e.stopPropagation()}
                 >

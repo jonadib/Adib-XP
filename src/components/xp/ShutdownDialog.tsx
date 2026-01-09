@@ -13,14 +13,19 @@ const ShutdownDialog = ({
   onShutdown,
   onRestart,
 }: ShutdownDialogProps) => {
-  const [isShuttingDown, setIsShuttingDown] = useState(false);
+  const [isRestarting, setIsRestarting] = useState(false);
 
   if (!isOpen) return null;
 
-  const handleShutdownClick = () => {
-    if (isShuttingDown) return;
-    setIsShuttingDown(true);
-    onShutdown();
+  const handleRestartClick = () => {
+    if (isRestarting) return;
+    setIsRestarting(true);
+    onRestart();
+  };
+
+  const handleCancel = () => {
+    if (isRestarting) return;
+    onClose();
   };
 
   return (
@@ -29,11 +34,11 @@ const ShutdownDialog = ({
       <div
         className="fixed inset-0 z-[19999] bg-white/10"
         style={{ backdropFilter: 'grayscale(100%)' }}
-        onClick={!isShuttingDown ? onClose : undefined}
+        onClick={handleCancel}
       />
       <div
         className="fixed inset-0 z-[20000] bg-black/40"
-        onClick={!isShuttingDown ? onClose : undefined}
+        onClick={handleCancel}
       />
 
       {/* Dialog */}
@@ -65,48 +70,44 @@ const ShutdownDialog = ({
 
               {/* Restart */}
               <button
-                className="flex flex-col items-center gap-1 group relative outline-none"
-                onClick={onRestart}
+                className={`flex flex-col items-center gap-1 group relative outline-none ${isRestarting ? 'opacity-50 cursor-not-allowed' : ''}`}
+                onClick={handleRestartClick}
+                disabled={isRestarting}
               >
-                <div className="relative z-10 p-1 rounded hover:bg-white/20 transition-colors duration-200">
+                <div className={`relative z-10 p-1 rounded transition-colors duration-200 ${!isRestarting ? 'hover:bg-white/20' : ''}`}>
                   <img
                     src="https://www.freeiconspng.com/thumbs/restart-icon/restart-icon-31.png"
                     alt="Restart"
                     className="w-10 h-10 drop-shadow-xl"
                   />
                 </div>
-                <span className="text-white font-medium text-sm drop-shadow-md mt-1 px-1 rounded group-hover:bg-[#00138c] group-focus:bg-[#00138c]">
+                <span className={`text-white font-medium text-sm drop-shadow-md mt-1 px-1 rounded ${!isRestarting ? 'group-hover:bg-[#00138c] group-focus:bg-[#00138c]' : ''}`}>
                   Restart
                 </span>
               </button>
 
-              {/* Turn Off */}
-              <button
-                className={`flex flex-col items-center gap-1 group relative outline-none ${isShuttingDown ? 'opacity-50 cursor-not-allowed' : ''}`}
-                onClick={handleShutdownClick}
-                disabled={isShuttingDown}
-              >
-                <div className={`relative z-10 p-1 rounded transition-colors duration-200 ${!isShuttingDown ? 'hover:bg-white/20' : ''}`}>
-                  {/* NOTE: Using the exact image URL provided, though scaling slightly to fit design */}
+              {/* Turn Off (DISABLED) */}
+              <div className="flex flex-col items-center gap-1 opacity-50 cursor-not-allowed">
+                <div className="p-1">
                   <img
                     src="https://www.freeiconspng.com/uploads/shutdown-icon-8.png"
                     alt="Turn Off"
-                    className="w-10 h-10 drop-shadow-xl rounded-full"
+                    className="w-10 h-10 drop-shadow-xl rounded-full grayscale"
                   />
                 </div>
-                <span className={`text-white font-medium text-sm drop-shadow-md mt-1 px-1 rounded ${!isShuttingDown ? 'group-hover:bg-[#00138c] group-focus:bg-[#00138c]' : ''}`}>
+                <span className="text-white font-medium text-sm drop-shadow-md mt-1 px-1">
                   Turn Off
                 </span>
-              </button>
+              </div>
             </div>
           </div>
 
           {/* Footer - Dark Blue */}
           <div className="bg-[#00138c] h-12 flex items-center justify-end px-4 border-t border-[#00138c]">
             <button
-              className="px-5 py-1 bg-white text-black text-xs font-semibold rounded border-2 border-white/50 hover:bg-[#f0f0f0] shadow-md active:translate-y-[1px]"
-              onClick={onClose}
-              disabled={isShuttingDown}
+              className={`px-5 py-1 bg-white text-black text-xs font-semibold rounded border-2 border-white/50 shadow-md ${isRestarting ? 'opacity-50 cursor-not-allowed' : 'hover:bg-[#f0f0f0] active:translate-y-[1px]'}`}
+              onClick={handleCancel}
+              disabled={isRestarting}
             >
               Cancel
             </button>

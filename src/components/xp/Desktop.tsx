@@ -173,17 +173,23 @@ const Desktop = ({ crtEnabled, onCrtToggle }: DesktopProps) => {
     .map((w) => ({ id: w.id, title: w.title, icon: w.icon }));
 
   const handleShutdown = () => {
+    // When the "Shut Down" button in Start Menu is clicked, start the slow transition
     document.body.classList.add('shutdown-transition');
-    // Wait for the slow transition before actually shutting down (reloading)
+    setShowShutdownDialog(true);
+  };
+
+  const handleRestart = () => {
+    // Everything depends on Restart now. Delay for the already-running transition.
     setTimeout(() => {
       setShowShutdownDialog(false);
       window.location.reload();
     }, 5000);
   };
 
-  const handleRestart = () => {
+  const closeShutdownDialog = () => {
+    // If they cancel, remove the transition
+    document.body.classList.remove('shutdown-transition');
     setShowShutdownDialog(false);
-    window.location.reload();
   };
 
   const handleLogoff = () => {
@@ -329,7 +335,7 @@ const Desktop = ({ crtEnabled, onCrtToggle }: DesktopProps) => {
       {/* Shutdown Dialog */}
       <ShutdownDialog
         isOpen={showShutdownDialog}
-        onClose={() => setShowShutdownDialog(false)}
+        onClose={closeShutdownDialog}
         onShutdown={handleShutdown}
         onRestart={handleRestart}
       />
