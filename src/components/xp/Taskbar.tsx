@@ -118,11 +118,6 @@ const Taskbar = ({
           </svg>
         </button>
 
-        <img
-          src="https://cdn-icons-png.flaticon.com/512/929/929426.png"
-          alt="Volume"
-          className="w-3.5 h-3.5 md:w-4 md:h-4 cursor-pointer opacity-80 hover:opacity-100"
-        />
         <span className="font-normal drop-shadow truncate max-w-[50px] md:max-w-none">{time}</span>
       </div>
     </div>
