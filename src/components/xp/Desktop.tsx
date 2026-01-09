@@ -182,11 +182,8 @@ const Desktop = ({ crtEnabled, onCrtToggle }: DesktopProps) => {
   };
 
   const handleRestart = () => {
-    // Show disabled state for a moment before restarting
-    setTimeout(() => {
-      setShowShutdownDialog(false);
-      window.location.reload();
-    }, 1500);
+    setShowShutdownDialog(false);
+    window.location.reload();
   };
 
   const handleLogoff = () => {
