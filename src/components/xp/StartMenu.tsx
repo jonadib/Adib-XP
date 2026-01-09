@@ -183,8 +183,9 @@ const StartMenu = ({
             {/* RECENTLY USED (With Side Submenu) */}
             <div
               className={`relative flex items-center justify-between px-2 py-1 cursor-pointer rounded-sm transition-colors ${showRecentlyUsed ? 'bg-[#316ac5] text-white' : 'hover:bg-[#316ac5] hover:text-white text-[#00135b]'}`}
-              onMouseEnter={() => setShowRecentlyUsed(true)}
-              onMouseLeave={() => setShowRecentlyUsed(false)}
+              onClick={() => isMobile && setShowRecentlyUsed(!showRecentlyUsed)}
+              onMouseEnter={() => !isMobile && setShowRecentlyUsed(true)}
+              onMouseLeave={() => !isMobile && setShowRecentlyUsed(false)}
             >
               <div className="flex items-center gap-2">
                 <img src="https://cdn-icons-png.flaticon.com/512/3396/3396255.png" className="w-5 h-5" alt="Recent" />
@@ -192,24 +193,36 @@ const StartMenu = ({
               </div>
               <span className="text-[8px]">▶</span>
 
-              {/* --- SUBMENU --- 
-                  - top-[190px]: Moves it up significantly as requested 
-                  - bg-white/70: 70% Opacity
-                  - backdrop-blur-md: Frosted glass effect
-              */}
               {showRecentlyUsed && (
                 <div
-                  className={`absolute left-[95%] -top-[190px] ${isMobile ? 'w-[200px]' : 'w-64'} bg-white/70 backdrop-blur-md border border-[#95bdee] shadow-lg z-[6000] ml-[-1px] rounded-r-sm`}
+                  className={`${isMobile
+                    ? 'fixed inset-x-2 bottom-[80px] h-[380px] z-[7000]'
+                    : 'absolute left-[95%] -top-[190px] w-64'
+                    } bg-white border border-[#95bdee] shadow-2xl rounded-sm overflow-hidden flex flex-col`}
+                  onClick={(e) => isMobile && e.stopPropagation()}
                 >
-                  <div className="flex flex-col py-1">
+                  {/* Submenu Header (Mobile Only) */}
+                  {isMobile && (
+                    <div className="h-8 flex items-center justify-between px-3 bg-gradient-to-r from-[#245edb] to-[#3f8cf3] text-white shrink-0">
+                      <span className="text-xs font-bold">Recently Used Programs</span>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setShowRecentlyUsed(false);
+                        }}
+                        className="w-5 h-5 bg-[#e04f14] flex items-center justify-center rounded-sm border border-white/40 active:brightness-90"
+                      >
+                        <span className="text-xs font-bold mt-[-1px]">✕</span>
+                      </button>
+                    </div>
+                  )}
+
+                  <div className="flex-1 overflow-y-auto py-1">
                     {recentGroups.map((group, groupIdx) => (
                       <div key={groupIdx}>
-                        {/* Divider before group (except first) */}
                         {groupIdx > 0 && (
                           <div className="border-t border-gray-300/50 my-1 mx-2" />
                         )}
-
-                        {/* Group Items */}
                         {group.map((app, appIdx) => (
                           <div
                             key={appIdx}

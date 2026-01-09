@@ -252,7 +252,7 @@ const Desktop = ({ crtEnabled, onCrtToggle }: DesktopProps) => {
 
   return (
     <div
-      className="relative w-full h-[calc(100vh-30px)] bg-cover bg-center overflow-hidden"
+      className="relative w-full h-[calc(100dvh-30px)] bg-cover bg-center overflow-hidden"
       style={{
         backgroundImage: "url('https://wallpaper-house.com/data/out/6/wallpaper2you_131441.jpg')",
       }}

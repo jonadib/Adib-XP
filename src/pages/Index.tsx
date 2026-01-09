@@ -38,7 +38,7 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="h-screen w-screen overflow-hidden bg-black select-none relative">
+    <div className="h-[100dvh] w-[100dvw] overflow-hidden bg-black select-none relative">
       {/* Global CRT Effect */}
       {crtEnabled && <div className="crt-overlay pointer-events-none" />}
 
