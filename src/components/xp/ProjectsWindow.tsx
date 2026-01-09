@@ -142,7 +142,7 @@ const ProjectsWindow = ({ windowControls, favorites, onToggleFavorite }: Project
         setIsDarkMode={setIsDarkMode}
         showDarkMode={true}
         onFavoritesClick={() => setShowOnlyFavorites(!showOnlyFavorites)}
-        favoritesIcon="https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L3JtNTMzLWljb24tMDc5LWwycmFsOXNtLmpwZw.jpg"
+        favoritesIcon="/star-icon.png"
         favoritesIconSize="w-8 h-8"
       />
 
