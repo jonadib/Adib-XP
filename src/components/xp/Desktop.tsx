@@ -320,7 +320,7 @@ const Desktop = ({ crtEnabled, onCrtToggle }: DesktopProps) => {
 
         {/* Balloon Notification */}
         <BalloonNotification
-          title="Welcome to MitchIvin XP"
+          title="Welcome to Adib XP"
           message="A faithful XP-inspired interface, custom-built to showcase my work and attention to detail."
           links={balloonLinks}
           icon="/Black Red Grunge Moon Light Music Album Cover.jpg"

@@ -142,7 +142,7 @@ const ProjectsWindow = ({ windowControls, favorites, onToggleFavorite }: Project
         setIsDarkMode={setIsDarkMode}
         showDarkMode={true}
         onFavoritesClick={() => setShowOnlyFavorites(!showOnlyFavorites)}
-        favoritesIcon="https://icons.iconarchive.com/icons/hopstarter/sleek-xp-basic/128/Heart-icon.png"
+        favoritesIcon="https://images.rawpixel.com/image_800/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIyLTA1L3JtNTMzLWljb24tMDc5LWwycmFsOXNtLmpwZw.jpg"
         favoritesIconSize="w-8 h-8"
       />
 
