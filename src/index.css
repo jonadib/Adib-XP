@@ -514,3 +514,13 @@
 .xp-recent-item:hover img {
   filter: brightness(1.2);
 }
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

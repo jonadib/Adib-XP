@@ -89,7 +89,7 @@ const ToolbarButton = ({
 }) => (
     <button
         onClick={onClick}
-        className="flex items-center gap-1 px-1.5 md:px-2 py-1 hover:bg-white/40 border border-transparent hover:border-black/10 rounded-sm group shrink-0"
+        className="flex items-center gap-1 px-2 py-1 hover:bg-white/40 border border-transparent hover:border-black/10 rounded-sm group shrink-0"
     >
         <img src={icon} alt={label} className={`${iconSize} object-contain`} />
         <span className="text-[11px] text-black group-hover:text-black hidden md:inline">{label}</span>
@@ -186,7 +186,7 @@ const ModernXPToolbar = ({
                     <span className="text-[11px] text-gray-600 hidden md:inline">Forward</span>
                 </button>
 
-                <div className="h-6 w-[1px] bg-[#aca899] mx-1" />
+                <div className="h-6 w-[1px] bg-[#aca899] mx-1 hidden md:block" />
 
                 {/* Standard Actions with User Icons */}
                 <ToolbarButton
@@ -195,7 +195,7 @@ const ModernXPToolbar = ({
                     onClick={onHomeClick || (() => windowControls?.onExit())}
                     iconSize="w-8 h-8"
                 />
-                <div className="h-6 w-[1px] bg-[#aca899] mx-1" />
+                <div className="h-6 w-[1px] bg-[#aca899] mx-1 hidden md:block" />
                 <ToolbarButton
                     icon={iconFavorites}
                     label={favoritesLabel}
@@ -203,7 +203,7 @@ const ModernXPToolbar = ({
                     iconSize={favoritesIconSize}
                 />
 
-                <div className="flex-1" /> {/* Spacer */}
+                <div className="flex-1 min-w-[8px]" /> {/* Spacer */}
 
                 {/* Dark Mode Toggle */}
                 {showDarkMode && (
@@ -212,7 +212,7 @@ const ModernXPToolbar = ({
                         className="flex items-center gap-1 px-2 py-1 hover:bg-white/40 border border-transparent hover:border-black/10 rounded-sm shrink-0"
                     >
                         <img src={iconTheme} alt="Theme" className="w-4 h-4" />
-                        <span className="text-[11px] text-black hidden sm:inline">Theme</span>
+                        <span className="text-[11px] text-black hidden md:inline">Light/Dark</span>
                     </button>
                 )}
             </div>
