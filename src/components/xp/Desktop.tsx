@@ -173,16 +173,20 @@ const Desktop = ({ crtEnabled, onCrtToggle }: DesktopProps) => {
     .map((w) => ({ id: w.id, title: w.title, icon: w.icon }));
 
   const handleShutdown = () => {
-    setShowShutdownDialog(false);
     document.body.classList.add('shutdown-transition');
+    // Wait for the slow transition before actually shutting down (reloading)
     setTimeout(() => {
+      setShowShutdownDialog(false);
       window.location.reload();
-    }, 1500);
+    }, 5000);
   };
 
   const handleRestart = () => {
-    setShowShutdownDialog(false);
-    window.location.reload();
+    // Show disabled state for a moment before restarting
+    setTimeout(() => {
+      setShowShutdownDialog(false);
+      window.location.reload();
+    }, 1500);
   };
 
   const handleLogoff = () => {

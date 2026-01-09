@@ -403,7 +403,7 @@
 /* Shutdown transition effect */
 .shutdown-transition {
   filter: grayscale(100%) brightness(0.5);
-  transition: filter 1.5s;
+  transition: filter 4s ease-in-out;
 }
 
 @keyframes scaleIn {
