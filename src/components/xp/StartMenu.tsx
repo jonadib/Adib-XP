@@ -196,7 +196,7 @@ const StartMenu = ({
               {showRecentlyUsed && (
                 <div
                   className={`${isMobile
-                    ? 'fixed inset-x-2 bottom-[80px] h-[380px] z-[7000]'
+                    ? 'fixed left-1/2 -translate-x-1/2 bottom-[80px] w-[240px] h-[380px] z-[7000]'
                     : 'absolute left-[95%] -top-[190px] w-64'
                     } bg-white border border-[#95bdee] shadow-2xl rounded-sm overflow-hidden flex flex-col`}
                   onClick={(e) => isMobile && e.stopPropagation()}
