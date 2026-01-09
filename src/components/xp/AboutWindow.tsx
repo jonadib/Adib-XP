@@ -200,21 +200,21 @@ const AboutWindow = ({ windowControls, onOpenWindow, favorites }: AboutWindowPro
           />
 
           <div className="relative z-10 max-w-4xl">
-            <h1 className="text-3xl font-bold text-white mb-8 pb-3 border-b border-white/30 drop-shadow-md flex items-center gap-3">
+            <h1 className="text-3xl font-bold text-white mb-8 pb-3 border-b border-white/30 drop-shadow-[2px_2px_2px_rgba(0,0,0,0.6)] flex items-center gap-3 justify-center md:justify-start font-tahoma">
               About Me
             </h1>
 
             <div className="space-y-8">
               {bioSections.map((section, index) => (
                 <div key={index} className="flex flex-col md:flex-row gap-5 items-start">
-                  <div className="w-16 h-16 md:w-20 md:h-20 shrink-0 bg-white/10 rounded-lg p-1 border border-white/20 shadow-sm backdrop-blur-sm">
+                  <div className="w-16 h-16 md:w-20 md:h-20 shrink-0">
                     <img
                       src={section.avatar}
                       alt=""
-                      className="w-full h-full object-contain"
+                      className="w-full h-full object-contain filter drop-shadow-md"
                     />
                   </div>
-                  <p className="text-white text-[13px] md:text-[14px] leading-relaxed drop-shadow-md font-medium pt-1 max-w-xl">
+                  <p className="text-white text-[13px] md:text-[14px] leading-relaxed drop-shadow-[1px_1px_1px_rgba(0,0,0,0.5)] font-medium pt-1 max-w-xl font-tahoma">
                     {section.text}
                   </p>
                 </div>
