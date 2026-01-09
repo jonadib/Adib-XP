@@ -13,9 +13,10 @@ interface WindowControls {
 interface ContactWindowProps {
   windowControls?: WindowControls;
   favorites: string[];
+  onOpenWindow?: (id: string) => void;
 }
 
-const ContactWindow = ({ windowControls, favorites }: ContactWindowProps) => {
+const ContactWindow = ({ windowControls, favorites, onOpenWindow }: ContactWindowProps) => {
   const [from, setFrom] = useState('');
   const [subject, setSubject] = useState('');
   const [message, setMessage] = useState('');
@@ -33,6 +34,8 @@ const ContactWindow = ({ windowControls, favorites }: ContactWindowProps) => {
         address="C:\Documents and Settings\Adib\Contact Me"
         isDarkMode={false}
         setIsDarkMode={() => { }}
+        favoritesLabel="My Resume"
+        onFavoritesClick={() => onOpenWindow?.('resume')}
       />
 
       {/* Email Toolbar */}

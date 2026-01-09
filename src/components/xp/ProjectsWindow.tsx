@@ -45,6 +45,8 @@ const ProjectsWindow = ({ windowControls, favorites, onToggleFavorite }: Project
     { id: 'Personal', icon: () => <span className="text-base">💡</span> },
   ];
 
+  const isMobile = window.innerWidth < 768;
+
   const projects: Project[] = [
     // ... projects data (lines 49-97 remain the same)
     {
@@ -55,7 +57,7 @@ const ProjectsWindow = ({ windowControls, favorites, onToggleFavorite }: Project
       url: 'https://mujahidulislamadib.vercel.app/',
       image: '/portfolio.png',
       items: 1,
-      avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop',
+      avatar: '/Black Red Grunge Moon Light Music Album Cover.jpg',
     },
     {
       id: '2',
@@ -65,7 +67,7 @@ const ProjectsWindow = ({ windowControls, favorites, onToggleFavorite }: Project
       url: 'https://ru-market.vercel.app/',
       image: '/ru-market.png',
       items: 12,
-      avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop',
+      avatar: '/Black Red Grunge Moon Light Music Album Cover.jpg',
     },
     {
       id: '3',
@@ -75,7 +77,7 @@ const ProjectsWindow = ({ windowControls, favorites, onToggleFavorite }: Project
       url: 'https://ru-cse-q-a.vercel.app/',
       image: '/ru-cse-qa.png',
       items: 5,
-      avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop',
+      avatar: '/Black Red Grunge Moon Light Music Album Cover.jpg',
     },
     {
       id: '4',
@@ -85,7 +87,7 @@ const ProjectsWindow = ({ windowControls, favorites, onToggleFavorite }: Project
       url: 'https://jonadib.github.io/RUCSU/',
       image: '/rucsu.png',
       items: 8,
-      avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop',
+      avatar: '/Black Red Grunge Moon Light Music Album Cover.jpg',
     },
     {
       id: '5',
@@ -132,70 +134,76 @@ const ProjectsWindow = ({ windowControls, favorites, onToggleFavorite }: Project
         setIsDarkMode={setIsDarkMode}
         showDarkMode={true}
         onFavoritesClick={() => setShowOnlyFavorites(!showOnlyFavorites)}
+        favoritesIcon="https://icons.iconarchive.com/icons/hopstarter/sleek-xp-basic/128/Heart-icon.png"
+        favoritesIconSize="w-8 h-8"
       />
 
       {/* 3. Main Content Area */}
       <div className={`flex flex-col flex-1 overflow-hidden ${isDarkMode ? 'bg-[#1a1a1a] text-white' : 'bg-white text-gray-900'}`}>
 
         {/* Header (Logo & Search) */}
-        <div className="flex items-center justify-between px-6 py-6 border-b border-transparent">
+        <div className={`flex items-center justify-between px-4 sm:px-6 py-4 sm:py-6 border-b border-transparent`}>
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center shadow-sm">
-              <User className="w-6 h-6 text-white" strokeWidth={3} />
+            <div className="w-8 h-8 rounded-lg overflow-hidden flex items-center justify-center shadow-sm shrink-0 border border-white/20">
+              <img src="/Black Red Grunge Moon Light Music Album Cover.jpg" alt="User" className="w-full h-full object-cover" />
             </div>
-            <span className="text-2xl font-bold tracking-tight">MyProjects</span>
+            <span className="text-xl sm:text-2xl font-bold tracking-tight whitespace-nowrap">MyProjects</span>
           </div>
 
-          <div className="flex-1 max-w-md mx-8 relative">
-            <input
-              type="text"
-              placeholder="Search projects..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className={`w-full px-4 py-2 rounded-full text-sm outline-none border transition-all ${isDarkMode
-                ? 'bg-[#2a2a2a] border-gray-700 focus:border-gray-500 placeholder-gray-500'
-                : 'bg-gray-100 border-gray-200 focus:border-gray-300 placeholder-gray-400'
-                }`}
-            />
-            <Search className={`absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`} />
-          </div>
+          {!isMobile && (
+            <div className="flex-1 max-w-md mx-8 relative">
+              <input
+                type="text"
+                placeholder="Search projects..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className={`w-full px-4 py-2 rounded-full text-sm outline-none border transition-all ${isDarkMode
+                  ? 'bg-[#2a2a2a] border-gray-700 focus:border-gray-500 placeholder-gray-500'
+                  : 'bg-gray-100 border-gray-200 focus:border-gray-300 placeholder-gray-400'
+                  }`}
+              />
+              <Search className={`absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 ${isDarkMode ? 'text-gray-500' : 'text-gray-400'}`} />
+            </div>
+          )}
 
-          <div className="flex items-center gap-4">
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:opacity-75 transition-opacity"><Linkedin className={`w-6 h-6 ${isDarkMode ? 'text-white' : 'text-black'}`} /></a>
-            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:opacity-75 transition-opacity"><Instagram className={`w-6 h-6 ${isDarkMode ? 'text-white' : 'text-black'}`} /></a>
-            <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:opacity-75 transition-opacity"><Github className={`w-6 h-6 ${isDarkMode ? 'text-white' : 'text-black'}`} /></a>
+          <div className="flex items-center gap-2 sm:gap-4 shrink-0">
+            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:opacity-75 transition-opacity"><Linkedin className={`w-5 h-5 sm:w-6 sm:h-6 ${isDarkMode ? 'text-white' : 'text-black'}`} /></a>
+            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:opacity-75 transition-opacity"><Instagram className={`w-5 h-5 sm:w-6 sm:h-6 ${isDarkMode ? 'text-white' : 'text-black'}`} /></a>
+            <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:opacity-75 transition-opacity"><Github className={`w-5 h-5 sm:w-6 sm:h-6 ${isDarkMode ? 'text-white' : 'text-black'}`} /></a>
           </div>
         </div>
 
         {/* Split View: Sidebar + Grid */}
         <div className="flex flex-1 overflow-hidden">
 
-          {/* Sidebar */}
-          <div className="w-56 flex flex-col gap-1 p-4 overflow-y-auto shrink-0">
-            {categories.map((cat) => {
-              const IconComponent = cat.icon;
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => {
-                    setActiveCategory(cat.id);
-                    setShowOnlyFavorites(false);
-                  }}
-                  className={`flex items-center gap-3 px-4 py-2.5 rounded-full text-sm font-medium transition-colors ${activeCategory === cat.id && !showOnlyFavorites
-                    ? isDarkMode
-                      ? 'bg-[#2a2a2a] text-white'
-                      : 'bg-gray-100 text-black'
-                    : isDarkMode
-                      ? 'text-gray-400 hover:text-white hover:bg-white/5'
-                      : 'text-gray-500 hover:text-black hover:bg-black/5'
-                    }`}
-                >
-                  <IconComponent />
-                  <span>{cat.id}</span>
-                </button>
-              );
-            })}
-          </div>
+          {/* Sidebar - Hidden on mobile */}
+          {!isMobile && (
+            <div className="w-56 flex flex-col gap-1 p-4 overflow-y-auto shrink-0">
+              {categories.map((cat) => {
+                const IconComponent = cat.icon;
+                return (
+                  <button
+                    key={cat.id}
+                    onClick={() => {
+                      setActiveCategory(cat.id);
+                      setShowOnlyFavorites(false);
+                    }}
+                    className={`flex items-center gap-3 px-4 py-2.5 rounded-full text-sm font-medium transition-colors ${activeCategory === cat.id && !showOnlyFavorites
+                      ? isDarkMode
+                        ? 'bg-[#2a2a2a] text-white'
+                        : 'bg-gray-100 text-black'
+                      : isDarkMode
+                        ? 'text-gray-400 hover:text-white hover:bg-white/5'
+                        : 'text-gray-500 hover:text-black hover:bg-black/5'
+                      }`}
+                  >
+                    <IconComponent />
+                    <span>{cat.id}</span>
+                  </button>
+                );
+              })}
+            </div>
+          )}
 
           {/* Project Grid */}
           <div

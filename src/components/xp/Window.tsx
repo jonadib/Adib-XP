@@ -13,6 +13,7 @@ interface WindowProps {
   onFocus: () => void;
   zIndex: number;
   allowMaximize?: boolean;
+  isSmallOnMobile?: boolean;
 }
 
 const Window = ({
@@ -28,6 +29,7 @@ const Window = ({
   onFocus,
   zIndex,
   allowMaximize = true,
+  isSmallOnMobile = false,
 }: WindowProps) => {
   const [position, setPosition] = useState(initialPosition);
   const [size, setSize] = useState(initialSize);
@@ -151,10 +153,10 @@ const Window = ({
   return (
     <div
       ref={windowRef}
-      className={`absolute bg-card border border-primary rounded-t-lg shadow-xl flex flex-col overflow-hidden ${isMobile ? 'inset-0 !rounded-none' : ''
+      className={`absolute bg-card border border-primary rounded-t-lg shadow-xl flex flex-col overflow-hidden ${(isMobile && !isSmallOnMobile) ? 'inset-0 !rounded-none' : ''
         }`}
       style={
-        isMobile
+        (isMobile && !isSmallOnMobile)
           ? {
             position: 'fixed',
             top: 0,
@@ -166,8 +168,8 @@ const Window = ({
           : {
             left: position.x,
             top: position.y,
-            width: size.width,
-            height: size.height,
+            width: isMobile && isSmallOnMobile ? Math.min(size.width, window.innerWidth * 0.9) : size.width,
+            height: isMobile && isSmallOnMobile ? Math.min(size.height, (window.innerHeight - 30) * 0.9) : size.height,
             zIndex,
           }
       }

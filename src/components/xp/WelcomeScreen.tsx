@@ -12,7 +12,7 @@ const WelcomeScreen = ({ onComplete }: WelcomeScreenProps) => {
     const timer = setTimeout(() => {
       setIsVisible(false);
       onComplete();
-    }, 2000);
+    }, 3000);
 
     return () => clearTimeout(timer);
   }, [onComplete]);
@@ -20,17 +20,22 @@ const WelcomeScreen = ({ onComplete }: WelcomeScreenProps) => {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed inset-0 xp-welcome-bg z-[9500] flex items-center justify-center gap-5">
-      <div className="w-12 h-12 border-2 border-white rounded overflow-hidden">
-        <img 
-          src={profileImg} 
-          alt="User" 
-          className="w-full h-full object-cover"
-        />
+    <div className="fixed inset-0 z-[9500] flex flex-col font-tahoma select-none">
+      {/* Top Band */}
+      <div className="h-[15%] w-full bg-[#003399] border-b border-black/20" />
+
+      {/* Main Section */}
+      <div className="flex-1 xp-login-bg flex items-center justify-center relative overflow-hidden">
+        <div className="text-white text-5xl md:text-7xl font-normal italic drop-shadow-2xl animate-fade-in tracking-tight">
+          welcome
+        </div>
       </div>
-      <div className="text-white text-2xl md:text-3xl font-bold italic drop-shadow-lg">
-        Welcome
-      </div>
+
+      {/* Bottom Separator */}
+      <div className="xp-login-divider" />
+
+      {/* Bottom Band */}
+      <div className="h-[15%] w-full bg-[#003399]" />
     </div>
   );
 };

@@ -106,8 +106,8 @@ const ModernXPToolbar = ({
     onHomeClick,
     onFavoritesClick,
     showDarkMode = false,
-    favoritesIcon = "/star-icon.png",
-    favoritesIconSize = "w-10 h-10"
+    favoritesIcon = "https://icons.iconarchive.com/icons/hopstarter/sleek-xp-basic/128/Document-icon.png",
+    favoritesIconSize = "w-7 h-7"
 }: ModernXPToolbarProps) => {
     const [openMenu, setOpenMenu] = useState<string | null>(null);
     const iconHome = "https://files.softicons.com/download/toolbar-icons/soft-icons-by-lokas-software/ico/0007-home.ico";

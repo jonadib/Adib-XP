@@ -21,10 +21,14 @@ interface WindowState {
   zIndex: number;
 }
 
-const Desktop = () => {
+interface DesktopProps {
+  crtEnabled: boolean;
+  onCrtToggle: () => void;
+}
+
+const Desktop = ({ crtEnabled, onCrtToggle }: DesktopProps) => {
   const [selectedIcon, setSelectedIcon] = useState<string | null>(null);
   const [startMenuOpen, setStartMenuOpen] = useState(false);
-  const [crtEnabled, setCrtEnabled] = useState(false);
   const [zIndexCounter, setZIndexCounter] = useState(10);
   const [showBalloon, setShowBalloon] = useState(false);
   const [showShutdownDialog, setShowShutdownDialog] = useState(false);
@@ -93,6 +97,7 @@ const Desktop = () => {
     const timer = setTimeout(() => setShowBalloon(true), 2000);
     return () => clearTimeout(timer);
   }, []);
+
 
   const desktopIcons = [
     { id: 'about', icon: 'https://icons.iconarchive.com/icons/arrioch/blawb/128/folder-icon.png', label: 'About Me' },
@@ -214,11 +219,11 @@ const Desktop = () => {
       case 'about':
         return <AboutWindow onOpenWindow={openWindow} favorites={favorites} />;
       case 'contact':
-        return <ContactWindow favorites={favorites} />;
+        return <ContactWindow favorites={favorites} onOpenWindow={openWindow} />;
       case 'projects':
         return <ProjectsWindow favorites={favorites} onToggleFavorite={toggleFavorite} />;
       case 'skills':
-        return <SkillsWindow favorites={favorites} />;
+        return <SkillsWindow favorites={favorites} onOpenWindow={openWindow} />;
       case 'resume':
         return <ResumeWindow onOpenContact={() => openWindow('contact')} />;
       case 'video':
@@ -253,8 +258,6 @@ const Desktop = () => {
       }}
       onClick={handleDesktopClick}
     >
-      {/* CRT Effect */}
-      {crtEnabled && <div className="crt-overlay pointer-events-none" />}
 
       {/* Desktop Icons */}
       <div className="absolute top-2.5 left-2.5 flex flex-col gap-5 md:gap-5 z-0">
@@ -290,7 +293,7 @@ const Desktop = () => {
           onFocus={() => focusWindow(win.id)}
           initialPosition={{ x: 100 + Object.keys(windows).indexOf(win.id) * 30, y: 50 + Object.keys(windows).indexOf(win.id) * 30 }}
           initialSize={win.id === 'about' ? { width: 900, height: 600 } : (win.id === 'audio' ? { width: 500, height: 350 } : { width: 700, height: 500 })}
-          allowMaximize={win.id !== 'audio'}
+          isSmallOnMobile={win.id === 'audio'}
         >
           {renderWindowContent(win.id)}
         </Window>
@@ -315,7 +318,7 @@ const Desktop = () => {
         title="Welcome to MitchIvin XP"
         message="A faithful XP-inspired interface, custom-built to showcase my work and attention to detail."
         links={balloonLinks}
-        icon="https://icons.iconarchive.com/icons/hopstarter/sleek-xp-basic/128/Help-icon.png"
+        icon="/Black Red Grunge Moon Light Music Album Cover.jpg"
         show={showBalloon}
         onClose={() => setShowBalloon(false)}
         duration={10000}
@@ -341,7 +344,7 @@ const Desktop = () => {
         }}
         startMenuOpen={startMenuOpen}
         crtEnabled={crtEnabled}
-        onCrtToggle={() => setCrtEnabled(!crtEnabled)}
+        onCrtToggle={onCrtToggle}
         onBalloonClick={handleShowBalloon}
       />
     </div>

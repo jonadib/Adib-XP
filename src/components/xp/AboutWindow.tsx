@@ -110,9 +110,7 @@ const AboutWindow = ({ windowControls, onOpenWindow, favorites }: AboutWindowPro
         isDarkMode={false}
         setIsDarkMode={() => { }}
         homeLabel="My Project"
-        favoritesLabel="Resume"
-        favoritesIcon="https://icons.iconarchive.com/icons/hopstarter/sleek-xp-basic/128/Document-icon.png"
-        favoritesIconSize="w-7 h-7"
+        favoritesLabel="My Resume"
         onHomeClick={() => {
           windowControls?.onMinimize();
           onOpenWindow?.('projects');

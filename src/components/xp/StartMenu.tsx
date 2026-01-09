@@ -67,6 +67,7 @@ const StartMenu = ({
   onOpenAudio,
 }: StartMenuProps) => {
   const [showRecentlyUsed, setShowRecentlyUsed] = useState(false);
+  const isMobile = window.innerWidth < 640;
 
   if (!isOpen) return null;
 
@@ -75,7 +76,7 @@ const StartMenu = ({
 
       {/* Main Start Menu Container */}
       <div
-        className="fixed bottom-[40px] left-0 w-[400px] sm:w-[480px] rounded-t-lg shadow-2xl z-[5000] overflow-visible animate-in fade-in slide-in-from-bottom-5 duration-200"
+        className={`fixed bottom-[40px] left-0 ${isMobile ? 'w-[50vw]' : 'w-[400px] sm:w-[480px]'} rounded-t-lg shadow-2xl z-[5000] overflow-visible animate-in fade-in slide-in-from-bottom-5 duration-200`}
         style={{
           boxShadow: '2px 0px 10px rgba(0,0,0,0.5)',
           borderTopLeftRadius: '8px',
@@ -87,7 +88,7 @@ const StartMenu = ({
           {/* Profile Image - Matches Login Section style */}
           <div className="w-10 h-10 bg-white rounded border-2 border-white overflow-hidden shadow-sm relative ring-1 ring-white/50">
             <img
-              src={profileImg}
+              src="/Black Red Grunge Moon Light Music Album Cover.jpg"
               alt="Profile"
               className="w-full h-full object-cover"
             />
@@ -198,7 +199,7 @@ const StartMenu = ({
               */}
               {showRecentlyUsed && (
                 <div
-                  className="absolute left-[100%] -top-[190px] w-64 bg-white/70 backdrop-blur-md border border-[#95bdee] shadow-lg z-[6000] ml-[-1px] rounded-r-sm"
+                  className={`absolute left-[100%] -top-[190px] ${isMobile ? 'w-[50vw]' : 'w-64'} bg-white/70 backdrop-blur-md border border-[#95bdee] shadow-lg z-[6000] ml-[-1px] rounded-r-sm`}
                 >
                   <div className="flex flex-col py-1">
                     {recentGroups.map((group, groupIdx) => (
@@ -227,7 +228,7 @@ const StartMenu = ({
             </div>
 
             <div className="flex items-center gap-2 px-2 py-1 hover:bg-[#316ac5] hover:text-white cursor-pointer rounded-sm text-[#00135b] transition-colors">
-              <img src="https://w7.pngwing.com/pngs/521/785/png-transparent-command-line-interface-linux-command-line-interpreter-unix-linux-angle-rectangle-computer-program.png" className="w-5 h-5" alt="CMD" />
+              <img src="https://www.freeiconspng.com/thumbs/command-line-icon/command-line-icon-1.png" className="w-5 h-5" alt="CMD" />
               <span className="text-xs font-semibold">Command Prompt</span>
             </div>
 

@@ -13,9 +13,10 @@ interface WindowControls {
 interface SkillsWindowProps {
   windowControls?: WindowControls;
   favorites: string[];
+  onOpenWindow?: (id: string) => void;
 }
 
-const SkillsWindow = ({ windowControls, favorites }: SkillsWindowProps) => {
+const SkillsWindow = ({ windowControls, favorites, onOpenWindow }: SkillsWindowProps) => {
   const skills = [
     { icon: "https://icons.iconarchive.com/icons/cornmanthe3rd/plex/128/Other-html-5-icon.png", label: "HTML" },
     { icon: "https://icons.iconarchive.com/icons/martz90/hex/128/css-3-icon.png", label: "CSS" },
@@ -34,6 +35,8 @@ const SkillsWindow = ({ windowControls, favorites }: SkillsWindowProps) => {
         address="C:\Documents and Settings\Adib\Skills"
         isDarkMode={false}
         setIsDarkMode={() => { }}
+        favoritesLabel="My Resume"
+        onFavoritesClick={() => onOpenWindow?.('resume')}
       />
 
       <div className="flex flex-1 overflow-hidden">

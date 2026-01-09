@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ZoomIn, Save, Printer, Mail, MoreHorizontal } from 'lucide-react';
 import resumeImg from '@/assets/resume.jpg';
+import ModernXPToolbar from './ModernXPToolbar';
 
 interface WindowControls {
     onExit: () => void;
@@ -17,7 +18,8 @@ interface ResumeWindowProps {
 }
 
 const ResumeWindow = ({ windowControls, onOpenContact }: ResumeWindowProps) => {
-    const [zoom, setZoom] = useState(1);
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+    const [zoom, setZoom] = useState(isMobile ? 0.5 : 1);
     const [openMenu, setOpenMenu] = useState<string | null>(null);
 
     const zoomLevels = [0.5, 0.75, 1, 1.25, 1.5, 2];
@@ -70,6 +72,13 @@ const ResumeWindow = ({ windowControls, onOpenContact }: ResumeWindowProps) => {
 
     return (
         <div className="flex flex-col h-full bg-[#ece9d8] font-tahoma select-none">
+            <ModernXPToolbar
+                windowControls={windowControls}
+                address="C:\Documents and Settings\Adib\My Resume"
+                isDarkMode={false}
+                setIsDarkMode={() => { }}
+                favoritesLabel="My Resume"
+            />
             {/* Menu Bar */}
             <div className="flex items-center px-1.5 py-0.5 gap-1 border-b border-[#aca899]/50 text-[11px] bg-[#ece9d8]">
                 {menus.map((menu) => (

@@ -117,45 +117,118 @@
 
 /* Custom Animations */
 @keyframes bootLoad {
-  0% { width: 0; }
-  100% { width: 100%; }
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 100%;
+  }
 }
 
 @keyframes flicker {
-  0% { opacity: 0.27861; }
-  5% { opacity: 0.34769; }
-  10% { opacity: 0.23604; }
-  15% { opacity: 0.90626; }
-  20% { opacity: 0.18128; }
-  25% { opacity: 0.83891; }
-  30% { opacity: 0.65583; }
-  35% { opacity: 0.57807; }
-  40% { opacity: 0.26559; }
-  45% { opacity: 0.84693; }
-  50% { opacity: 0.96019; }
-  55% { opacity: 0.08594; }
-  60% { opacity: 0.20313; }
-  65% { opacity: 0.71988; }
-  70% { opacity: 0.53455; }
-  75% { opacity: 0.37288; }
-  80% { opacity: 0.71428; }
-  85% { opacity: 0.70419; }
-  90% { opacity: 0.7003; }
-  95% { opacity: 0.36108; }
-  100% { opacity: 0.24387; }
+  0% {
+    opacity: 0.27861;
+  }
+
+  5% {
+    opacity: 0.34769;
+  }
+
+  10% {
+    opacity: 0.23604;
+  }
+
+  15% {
+    opacity: 0.90626;
+  }
+
+  20% {
+    opacity: 0.18128;
+  }
+
+  25% {
+    opacity: 0.83891;
+  }
+
+  30% {
+    opacity: 0.65583;
+  }
+
+  35% {
+    opacity: 0.57807;
+  }
+
+  40% {
+    opacity: 0.26559;
+  }
+
+  45% {
+    opacity: 0.84693;
+  }
+
+  50% {
+    opacity: 0.96019;
+  }
+
+  55% {
+    opacity: 0.08594;
+  }
+
+  60% {
+    opacity: 0.20313;
+  }
+
+  65% {
+    opacity: 0.71988;
+  }
+
+  70% {
+    opacity: 0.53455;
+  }
+
+  75% {
+    opacity: 0.37288;
+  }
+
+  80% {
+    opacity: 0.71428;
+  }
+
+  85% {
+    opacity: 0.70419;
+  }
+
+  90% {
+    opacity: 0.7003;
+  }
+
+  95% {
+    opacity: 0.36108;
+  }
+
+  100% {
+    opacity: 0.24387;
+  }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes slideUp {
-  from { 
+  from {
     opacity: 0;
     transform: translateY(20px);
   }
-  to { 
+
+  to {
     opacity: 1;
     transform: translateY(0);
   }
@@ -179,25 +252,21 @@
 
 /* XP Specific Styles */
 .xp-title-bar {
-  background: linear-gradient(
-    to bottom,
-    hsl(214 86% 48%) 0%,
-    hsl(214 82% 62%) 4%,
-    hsl(214 78% 56%) 18%,
-    hsl(214 76% 50%) 44%,
-    hsl(214 82% 49%) 100%
-  );
+  background: linear-gradient(to bottom,
+      hsl(214 86% 48%) 0%,
+      hsl(214 82% 62%) 4%,
+      hsl(214 78% 56%) 18%,
+      hsl(214 76% 50%) 44%,
+      hsl(214 82% 49%) 100%);
 }
 
 .xp-title-bar-inactive {
-  background: linear-gradient(
-    to bottom,
-    hsl(220 20% 55%) 0%,
-    hsl(220 18% 65%) 4%,
-    hsl(220 16% 60%) 18%,
-    hsl(220 14% 55%) 44%,
-    hsl(220 20% 50%) 100%
-  );
+  background: linear-gradient(to bottom,
+      hsl(220 20% 55%) 0%,
+      hsl(220 18% 65%) 4%,
+      hsl(220 16% 60%) 18%,
+      hsl(220 14% 55%) 44%,
+      hsl(220 20% 50%) 100%);
 }
 
 .xp-taskbar {
@@ -254,15 +323,18 @@
 }
 
 .xp-login-bg {
-  background: linear-gradient(
-    to bottom,
-    hsl(220 100% 30%) 0%,
-    hsl(220 100% 30%) 15%,
-    hsl(195 100% 40%) 15%,
-    hsl(195 100% 40%) 85%,
-    hsl(220 100% 30%) 85%,
-    hsl(220 100% 30%) 100%
-  );
+  background-color: #4b6ed0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 2px 2px;
+  box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.2);
+}
+
+.xp-login-divider {
+  background: linear-gradient(to bottom, #ff6600 0%, #ff8c00 100%);
+  height: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .xp-welcome-bg {
@@ -307,7 +379,7 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: 
+  background:
     linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%),
     linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
   background-size: 100% 3px, 3px 100%;
@@ -335,11 +407,12 @@
 }
 
 @keyframes scaleIn {
-  from { 
+  from {
     transform: scale(0.9);
     opacity: 0;
   }
-  to { 
+
+  to {
     transform: scale(1);
     opacity: 1;
   }
