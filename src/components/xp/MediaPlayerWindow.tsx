@@ -121,8 +121,8 @@ const MediaPlayerWindow = ({ type, playlist }: MediaPlayerWindowProps) => {
 
     return (
         <div className="flex flex-col h-full bg-[#1a1a1a] text-white font-sans select-none overflow-hidden text-[11px]">
-            {/* XP-Style Address Bar (Optional, can be hidden for clean look but keeping for now) */}
-            <div className="flex items-center gap-2 px-2 py-1 bg-[#ece9d8] border-b border-[#aca899] shadow-sm text-black">
+            {/* XP-Style Address Bar (Hidden on Mobile) */}
+            <div className="hidden md:flex items-center gap-2 px-2 py-1 bg-[#ece9d8] border-b border-[#aca899] shadow-sm text-black">
                 <span className="text-[#444] font-medium">URL</span>
                 <form onSubmit={handleAddressSubmit} className="flex-1 flex items-center bg-white border border-[#7f9db9] h-5 px-1 shadow-inner relative overflow-hidden">
                     <Globe className="w-3.5 h-3.5 mr-1 text-blue-600" />
@@ -140,11 +140,11 @@ const MediaPlayerWindow = ({ type, playlist }: MediaPlayerWindowProps) => {
             </div>
 
             {/* Main Content Area */}
-            <div className="flex-1 flex items-center justify-center p-4 gap-6 bg-[#222]">
+            <div className="flex-1 flex items-center justify-center p-2 md:p-4 gap-4 md:gap-6 bg-[#222] overflow-y-auto">
                 {type === 'audio' && !currentMedia.isYoutube ? (
-                    <div className="flex items-center gap-6 w-full max-w-xl">
+                    <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 w-full max-w-xl">
                         {/* Left Side: Album Art Display */}
-                        <div className="relative w-[45%] aspect-square rounded-xl overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.5)] border border-white/5">
+                        <div className="relative w-[70%] md:w-[45%] aspect-square rounded-xl overflow-hidden shadow-[0_15px_40px_rgba(0,0,0,0.5)] border border-white/5 flex-shrink-0">
                             <img
                                 src="/Black Red Grunge Moon Light Music Album Cover.jpg"
                                 alt="Album Cover"
@@ -164,9 +164,9 @@ const MediaPlayerWindow = ({ type, playlist }: MediaPlayerWindowProps) => {
                         </div>
 
                         {/* Right Side: Vintage Click Wheel */}
-                        <div className="flex-1 flex flex-col items-center justify-center">
+                        <div className="flex-1 flex flex-col items-center justify-center w-full">
                             {/* Track Timeline / Seeker */}
-                            <div className="mb-6 w-full px-4 flex flex-col gap-1.5">
+                            <div className="mb-4 md:mb-6 w-full px-4 flex flex-col gap-1.5">
                                 <div className="flex justify-between text-[9px] text-gray-500 font-mono tracking-tighter uppercase">
                                     <span>{formatTime(currentTime)}</span>
                                     <span>{formatTime(duration)}</span>
@@ -182,7 +182,7 @@ const MediaPlayerWindow = ({ type, playlist }: MediaPlayerWindowProps) => {
                                 />
                             </div>
 
-                            <div className="relative w-40 h-40 rounded-full bg-[#1a1a1a] shadow-[inset_0_2px_10px_rgba(255,255,255,0.05),0_10px_20px_rgba(0,0,0,0.4)] border border-white/5 flex items-center justify-center">
+                            <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full bg-[#1a1a1a] shadow-[inset_0_2px_10px_rgba(255,255,255,0.05),0_10px_20px_rgba(0,0,0,0.4)] border border-white/5 flex items-center justify-center flex-shrink-0">
                                 {/* The Outer Circle/Wheel */}
                                 <div className="absolute inset-1.5 rounded-full border border-white/5 bg-gradient-to-br from-[#2a2a2a] to-[#121212]" />
 

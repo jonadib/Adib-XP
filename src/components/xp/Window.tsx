@@ -165,13 +165,24 @@ const Window = ({
             bottom: 30,
             zIndex
           }
-          : {
-            left: position.x,
-            top: position.y,
-            width: isMobile && isSmallOnMobile ? Math.min(size.width, window.innerWidth * 0.9) : size.width,
-            height: isMobile && isSmallOnMobile ? Math.min(size.height, (window.innerHeight - 30) * 0.9) : size.height,
-            zIndex,
-          }
+          : (isMobile && isSmallOnMobile)
+            ? {
+              left: '50%',
+              top: '50%',
+              transform: 'translate(-50%, -55%)',
+              width: '90vw',
+              height: 'auto',
+              maxHeight: '80vh',
+              zIndex,
+              position: 'fixed',
+            }
+            : {
+              left: position.x,
+              top: position.y,
+              width: size.width,
+              height: size.height,
+              zIndex,
+            }
       }
       onClick={onFocus}
     >

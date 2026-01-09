@@ -60,9 +60,9 @@ const Taskbar = ({
         <img
           src="https://www.freepnglogos.com/uploads/windows-logo-png/file-windows-logo-multicolored-svg-7.png"
           alt="Start"
-          className="w-5 h-5"
+          className="w-4 h-4 md:w-5 md:h-5"
         />
-        <span className="hidden sm:inline italic">start</span>
+        <span className="italic text-xs md:text-sm">start</span>
       </button>
 
       {/* Taskbar Items */}
@@ -81,23 +81,23 @@ const Taskbar = ({
       </div>
 
       {/* System Tray */}
-      <div className="xp-tray h-[30px] px-3 flex items-center gap-2.5 text-white text-xs border-l border-blue-900">
+      <div className="xp-tray h-[30px] px-1.5 md:px-3 flex items-center gap-1.5 md:gap-2.5 text-white text-[10px] md:text-xs border-l border-blue-900 flex-shrink-0">
         {/* Balloon/Info icon */}
         <button
-          className="w-4 h-4 flex items-center justify-center cursor-pointer opacity-80 hover:opacity-100"
+          className="w-3.5 h-3.5 md:w-4 md:h-4 flex items-center justify-center cursor-pointer opacity-80 hover:opacity-100"
           onClick={onBalloonClick}
           title="Show notification"
         >
           <img
             src="https://icons.iconarchive.com/icons/hopstarter/sleek-xp-basic/128/Help-icon.png"
             alt="Info"
-            className="w-4 h-4"
+            className="w-3.5 h-3.5 md:w-4 md:h-4"
           />
         </button>
 
         {/* CRT Toggle */}
         <button
-          className={`w-4 h-4 flex items-center justify-center rounded cursor-pointer transition-all ${crtEnabled ? 'opacity-100 bg-white/20' : 'opacity-60 hover:opacity-100'
+          className={`w-3.5 h-3.5 md:w-4 md:h-4 flex items-center justify-center rounded cursor-pointer transition-all ${crtEnabled ? 'opacity-100 bg-white/20' : 'opacity-60 hover:opacity-100'
             }`}
           onClick={onCrtToggle}
           title={crtEnabled ? 'Disable CRT Effect' : 'Enable CRT Effect'}
@@ -110,7 +110,7 @@ const Taskbar = ({
             strokeWidth="2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="w-3.5 h-3.5"
+            className="w-3 h-3 md:w-3.5 md:h-3.5"
           >
             <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
             <line x1="8" y1="21" x2="16" y2="21" />
@@ -121,9 +121,9 @@ const Taskbar = ({
         <img
           src="https://cdn-icons-png.flaticon.com/512/929/929426.png"
           alt="Volume"
-          className="w-4 h-4 cursor-pointer opacity-80 hover:opacity-100"
+          className="w-3.5 h-3.5 md:w-4 md:h-4 cursor-pointer opacity-80 hover:opacity-100"
         />
-        <span className="font-normal drop-shadow">{time}</span>
+        <span className="font-normal drop-shadow truncate max-w-[50px] md:max-w-none">{time}</span>
       </div>
     </div>
   );
