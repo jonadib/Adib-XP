@@ -3,14 +3,12 @@ import { useState } from 'react';
 interface ShutdownDialogProps {
   isOpen: boolean;
   onClose: () => void;
-  onShutdown: () => void;
   onRestart: () => void;
 }
 
 const ShutdownDialog = ({
   isOpen,
   onClose,
-  onShutdown,
   onRestart,
 }: ShutdownDialogProps) => {
   const [isRestarting, setIsRestarting] = useState(false);

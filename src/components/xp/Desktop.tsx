@@ -32,6 +32,7 @@ const Desktop = ({ crtEnabled, onCrtToggle }: DesktopProps) => {
   const [zIndexCounter, setZIndexCounter] = useState(10);
   const [showBalloon, setShowBalloon] = useState(false);
   const [showShutdownDialog, setShowShutdownDialog] = useState(false);
+  const [isShuttingDown, setIsShuttingDown] = useState(false);
 
   const [windows, setWindows] = useState<Record<string, WindowState>>({
     about: {
@@ -173,8 +174,8 @@ const Desktop = ({ crtEnabled, onCrtToggle }: DesktopProps) => {
     .map((w) => ({ id: w.id, title: w.title, icon: w.icon }));
 
   const handleShutdown = () => {
-    // When the "Shut Down" button in Start Menu is clicked, start the slow transition
-    document.body.classList.add('shutdown-transition');
+    setStartMenuOpen(false);
+    setIsShuttingDown(true);
     setShowShutdownDialog(true);
   };
 
@@ -188,7 +189,7 @@ const Desktop = ({ crtEnabled, onCrtToggle }: DesktopProps) => {
 
   const closeShutdownDialog = () => {
     // If they cancel, remove the transition
-    document.body.classList.remove('shutdown-transition');
+    setIsShuttingDown(false);
     setShowShutdownDialog(false);
   };
 
@@ -197,10 +198,6 @@ const Desktop = ({ crtEnabled, onCrtToggle }: DesktopProps) => {
     window.location.reload();
   };
 
-  const handleOpenShutdownDialog = () => {
-    setStartMenuOpen(false);
-    setShowShutdownDialog(true);
-  };
 
   const handleShowBalloon = () => {
     setShowBalloon(true);
@@ -259,100 +256,101 @@ const Desktop = ({ crtEnabled, onCrtToggle }: DesktopProps) => {
 
   return (
     <div
-      className="relative w-full h-[calc(100dvh-30px)] bg-cover bg-center overflow-hidden"
-      style={{
-        backgroundImage: "url('https://wallpaper-house.com/data/out/6/wallpaper2you_131441.jpg')",
-      }}
+      className="relative w-full h-[calc(100dvh-30px)] overflow-hidden"
       onClick={handleDesktopClick}
     >
+      {/* Container that gets filtered during shutdown */}
+      <div
+        className={`w-full h-full p-0 m-0 bg-cover bg-center transition-all ${isShuttingDown ? 'shutdown-transition' : ''}`}
+        style={{
+          backgroundImage: "url('https://wallpaper-house.com/data/out/6/wallpaper2you_131441.jpg')",
+        }}
+      >
+        {/* Desktop Icons */}
+        <div className="absolute top-2.5 left-2.5 flex flex-col gap-5 md:gap-5 z-0">
+          {desktopIcons.map((icon) => (
+            <DesktopIcon
+              key={icon.id}
+              icon={icon.icon}
+              label={icon.label}
+              isSelected={selectedIcon === icon.id}
+              onClick={() => {
+                setSelectedIcon(icon.id);
+              }}
+              onDoubleClick={() => {
+                openWindow(icon.id);
+              }}
+            />
+          ))}
+        </div>
 
-      {/* Desktop Icons */}
-      <div className="absolute top-2.5 left-2.5 flex flex-col gap-5 md:gap-5 z-0">
-        {desktopIcons.map((icon) => (
-          <DesktopIcon
-            key={icon.id}
-            icon={icon.icon}
-            label={icon.label}
-            isSelected={selectedIcon === icon.id}
-            // --- FIX START ---
-            onClick={() => {
-              setSelectedIcon(icon.id);
-            }}
-            onDoubleClick={() => {
-              openWindow(icon.id);
-            }}
-          // --- FIX END ---
-          />
+        {/* Windows */}
+        {Object.values(windows).map((win) => (
+          <Window
+            key={win.id}
+            id={win.id}
+            title={win.title}
+            isOpen={win.isOpen && !win.isMinimized}
+            isActive={getActiveWindowId() === win.id}
+            zIndex={win.zIndex}
+            onClose={() => closeWindow(win.id)}
+            onMinimize={() => minimizeWindow(win.id)}
+            onFocus={() => focusWindow(win.id)}
+            initialPosition={{ x: 100 + Object.keys(windows).indexOf(win.id) * 30, y: 50 + Object.keys(windows).indexOf(win.id) * 30 }}
+            initialSize={win.id === 'about' ? { width: 900, height: 600 } : (win.id === 'audio' ? { width: 500, height: 350 } : { width: 700, height: 500 })}
+            isSmallOnMobile={win.id === 'audio'}
+          >
+            {renderWindowContent(win.id)}
+          </Window>
         ))}
+
+        {/* Start Menu */}
+        <StartMenu
+          isOpen={startMenuOpen}
+          userName="Md Adib"
+          onLogoff={handleLogoff}
+          onShutdown={handleShutdown}
+          onOpenProjects={() => openWindow('projects')}
+          onOpenContact={() => openWindow('contact')}
+          onOpenAbout={() => openWindow('about')}
+          onOpenResume={() => openWindow('resume')}
+          onOpenVideo={() => openWindow('video')}
+          onOpenAudio={() => openWindow('audio')}
+        />
+
+        {/* Balloon Notification */}
+        <BalloonNotification
+          title="Welcome to MitchIvin XP"
+          message="A faithful XP-inspired interface, custom-built to showcase my work and attention to detail."
+          links={balloonLinks}
+          icon="/Black Red Grunge Moon Light Music Album Cover.jpg"
+          show={showBalloon}
+          onClose={() => setShowBalloon(false)}
+          duration={10000}
+          playSound={true}
+        />
+
+        {/* Taskbar */}
+        <Taskbar
+          openWindows={openWindows}
+          activeWindowId={getActiveWindowId()}
+          onWindowClick={handleTaskbarWindowClick}
+          onStartClick={(e?: React.MouseEvent) => {
+            if (e) e.stopPropagation();
+            setStartMenuOpen(!startMenuOpen);
+          }}
+          startMenuOpen={startMenuOpen}
+          crtEnabled={crtEnabled}
+          onCrtToggle={onCrtToggle}
+          onBalloonClick={handleShowBalloon}
+        />
       </div>
 
-      {/* Windows */}
-      {Object.values(windows).map((win) => (
-        <Window
-          key={win.id}
-          id={win.id}
-          title={win.title}
-          isOpen={win.isOpen && !win.isMinimized}
-          isActive={getActiveWindowId() === win.id}
-          zIndex={win.zIndex}
-          onClose={() => closeWindow(win.id)}
-          onMinimize={() => minimizeWindow(win.id)}
-          onFocus={() => focusWindow(win.id)}
-          initialPosition={{ x: 100 + Object.keys(windows).indexOf(win.id) * 30, y: 50 + Object.keys(windows).indexOf(win.id) * 30 }}
-          initialSize={win.id === 'about' ? { width: 900, height: 600 } : (win.id === 'audio' ? { width: 500, height: 350 } : { width: 700, height: 500 })}
-          isSmallOnMobile={win.id === 'audio'}
-        >
-          {renderWindowContent(win.id)}
-        </Window>
-      ))}
-
-      {/* Start Menu */}
-      <StartMenu
-        isOpen={startMenuOpen}
-        userName="Md Adib"
-        onLogoff={handleLogoff}
-        onShutdown={handleOpenShutdownDialog}
-        onOpenProjects={() => openWindow('projects')}
-        onOpenContact={() => openWindow('contact')}
-        onOpenAbout={() => openWindow('about')}
-        onOpenResume={() => openWindow('resume')}
-        onOpenVideo={() => openWindow('video')}
-        onOpenAudio={() => openWindow('audio')}
-      />
-
-      {/* Balloon Notification */}
-      <BalloonNotification
-        title="Welcome to MitchIvin XP"
-        message="A faithful XP-inspired interface, custom-built to showcase my work and attention to detail."
-        links={balloonLinks}
-        icon="/Black Red Grunge Moon Light Music Album Cover.jpg"
-        show={showBalloon}
-        onClose={() => setShowBalloon(false)}
-        duration={10000}
-        playSound={true}
-      />
-
-      {/* Shutdown Dialog */}
+      {/* Shutdown Dialog (Outside the filtered div to stay colorful) */}
       <ShutdownDialog
         isOpen={showShutdownDialog}
         onClose={closeShutdownDialog}
-        onShutdown={handleShutdown}
         onRestart={handleRestart}
-      />
-
-      {/* Taskbar */}
-      <Taskbar
-        openWindows={openWindows}
-        activeWindowId={getActiveWindowId()}
-        onWindowClick={handleTaskbarWindowClick}
-        onStartClick={(e?: React.MouseEvent) => {
-          if (e) e.stopPropagation();
-          setStartMenuOpen(!startMenuOpen);
-        }}
-        startMenuOpen={startMenuOpen}
-        crtEnabled={crtEnabled}
-        onCrtToggle={onCrtToggle}
-        onBalloonClick={handleShowBalloon}
       />
     </div>
   );

@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Search, Linkedin, Instagram, Github, User, Heart } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { Search, Linkedin, Instagram, Github, User, Heart, Facebook } from 'lucide-react';
 import ModernXPToolbar from './ModernXPToolbar';
 
 interface Project {
@@ -45,7 +45,15 @@ const ProjectsWindow = ({ windowControls, favorites, onToggleFavorite }: Project
     { id: 'Personal', icon: () => <span className="text-base">💡</span> },
   ];
 
-  const isMobile = window.innerWidth < 768;
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const projects: Project[] = [
     // ... projects data (lines 49-97 remain the same)
@@ -97,7 +105,7 @@ const ProjectsWindow = ({ windowControls, favorites, onToggleFavorite }: Project
       url: 'https://jonadib.github.io/DS-Visualizer/',
       image: '/ds-visualizer.png',
       items: 1,
-      avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&h=100&fit=crop',
+      avatar: '/Black Red Grunge Moon Light Music Album Cover.jpg',
     },
   ];
 
@@ -167,9 +175,11 @@ const ProjectsWindow = ({ windowControls, favorites, onToggleFavorite }: Project
           )}
 
           <div className="flex items-center gap-2 sm:gap-4 shrink-0">
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="hover:opacity-75 transition-opacity"><Linkedin className={`w-5 h-5 sm:w-6 sm:h-6 ${isDarkMode ? 'text-white' : 'text-black'}`} /></a>
-            <a href="https://instagram.com" target="_blank" rel="noreferrer" className="hover:opacity-75 transition-opacity"><Instagram className={`w-5 h-5 sm:w-6 sm:h-6 ${isDarkMode ? 'text-white' : 'text-black'}`} /></a>
-            <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:opacity-75 transition-opacity"><Github className={`w-5 h-5 sm:w-6 sm:h-6 ${isDarkMode ? 'text-white' : 'text-black'}`} /></a>
+            <a href="https://www.linkedin.com/in/md-mujahidul-islam-adib-017b42287/" target="_blank" rel="noreferrer" className="hover:opacity-75 transition-opacity"><Linkedin className={`w-5 h-5 sm:w-6 sm:h-6 ${isDarkMode ? 'text-white' : 'text-black'}`} /></a>
+            <a href="https://github.com/jonadib" target="_blank" rel="noreferrer" className="hover:opacity-75 transition-opacity"><Github className={`w-5 h-5 sm:w-6 sm:h-6 ${isDarkMode ? 'text-white' : 'text-black'}`} /></a>
+            {/* Hidden on mobile to save space */}
+            <a href="https://www.instagram.com/__adib25/" target="_blank" rel="noreferrer" className="hover:opacity-75 transition-opacity hidden sm:block"><Instagram className={`w-5 h-5 sm:w-6 sm:h-6 ${isDarkMode ? 'text-white' : 'text-black'}`} /></a>
+            <a href="https://www.facebook.com/mdmujahidulislamadib" target="_blank" rel="noreferrer" className="hover:opacity-75 transition-opacity hidden sm:block"><Facebook className={`w-5 h-5 sm:w-6 sm:h-6 ${isDarkMode ? 'text-white' : 'text-black'}`} /></a>
           </div>
         </div>
 

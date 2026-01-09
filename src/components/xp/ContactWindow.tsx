@@ -22,9 +22,10 @@ const ContactWindow = ({ windowControls, favorites, onOpenWindow }: ContactWindo
   const [message, setMessage] = useState('');
 
   const socials = [
-    { icon: "https://cdn-icons-png.flaticon.com/512/174/174857.png", label: "LinkedIn", url: "https://linkedin.com" },
-    { icon: "https://cdn-icons-png.flaticon.com/512/124/124010.png", label: "Facebook", url: "https://facebook.com" },
-    { icon: "https://cdn-icons-png.flaticon.com/512/25/25231.png", label: "GitHub", url: "https://github.com" },
+    { icon: "https://cdn-icons-png.flaticon.com/512/174/174857.png", label: "LinkedIn", url: "https://www.linkedin.com/in/md-mujahidul-islam-adib-017b42287/" },
+    { icon: "https://cdn-icons-png.flaticon.com/512/124/124010.png", label: "Facebook", url: "https://www.facebook.com/mdmujahidulislamadib" },
+    { icon: "https://cdn-icons-png.flaticon.com/512/25/25231.png", label: "GitHub", url: "https://github.com/jonadib" },
+    { icon: "https://cdn-icons-png.flaticon.com/512/174/174855.png", label: "Instagram", url: "https://www.instagram.com/__adib25/" },
   ];
 
   return (

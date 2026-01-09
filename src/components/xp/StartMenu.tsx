@@ -169,11 +169,16 @@ const StartMenu = ({
 
             {/* Socials */}
             {[
-              { label: "Instagram", icon: "https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg" },
-              { label: "Github", icon: "https://cdn-icons-png.flaticon.com/512/25/25231.png" },
-              { label: "LinkedIn", icon: "https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" },
+              { label: "Instagram", icon: "https://upload.wikimedia.org/wikipedia/commons/e/e7/Instagram_logo_2016.svg", url: "https://www.instagram.com/__adib25/" },
+              { label: "Github", icon: "https://cdn-icons-png.flaticon.com/512/25/25231.png", url: "https://github.com/jonadib" },
+              { label: "LinkedIn", icon: "https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png", url: "https://www.linkedin.com/in/md-mujahidul-islam-adib-017b42287/" },
+              { label: "Facebook", icon: "https://cdn-icons-png.flaticon.com/512/124/124010.png", url: "https://www.facebook.com/mdmujahidulislamadib" },
             ].map((item, i) => (
-              <div key={i} className="flex items-center gap-2 px-2 py-1 hover:bg-[#316ac5] hover:text-white cursor-pointer rounded-sm transition-colors">
+              <div
+                key={i}
+                className="flex items-center gap-2 px-2 py-1 hover:bg-[#316ac5] hover:text-white cursor-pointer rounded-sm transition-colors"
+                onClick={() => window.open(item.url, '_blank')}
+              >
                 <img src={item.icon} className="w-5 h-5 object-contain" alt={item.label} />
                 <span className="text-xs font-semibold">{item.label}</span>
               </div>

@@ -89,10 +89,10 @@ const ToolbarButton = ({
 }) => (
     <button
         onClick={onClick}
-        className="flex items-center gap-1 px-2 py-1 hover:bg-white/40 border border-transparent hover:border-black/10 rounded-sm group shrink-0"
+        className="flex items-center gap-1 px-1.5 md:px-2 py-1 hover:bg-white/40 border border-transparent hover:border-black/10 rounded-sm group shrink-0"
     >
         <img src={icon} alt={label} className={`${iconSize} object-contain`} />
-        <span className="text-[11px] text-black group-hover:text-black">{label}</span>
+        <span className="text-[11px] text-black group-hover:text-black hidden md:inline">{label}</span>
     </button>
 );
 
@@ -165,25 +165,25 @@ const ModernXPToolbar = ({
             </div>
 
             {/* Navigation Buttons Row */}
-            <div className="flex items-center gap-1 px-2 py-1.5 border-b border-[#aca899]/50">
+            <div className="flex items-center gap-1 px-1 md:px-2 py-1.5 border-b border-[#aca899]/50 overflow-x-auto no-scrollbar">
                 <button
                     disabled
-                    className="flex items-center gap-1 pr-2 opacity-50 cursor-default group shrink-0"
+                    className="flex items-center gap-1 pr-1 md:pr-2 opacity-50 cursor-default group shrink-0"
                 >
                     <div className="w-7 h-7 bg-gray-500 rounded-full flex items-center justify-center shadow-sm border border-white/30 grayscale">
                         <ArrowLeft className="w-4 h-4 text-white" strokeWidth={3} />
                     </div>
-                    <span className="text-[11px] text-gray-600">Back</span>
+                    <span className="text-[11px] text-gray-600 hidden md:inline">Back</span>
                 </button>
 
                 <button
                     disabled
-                    className="flex items-center gap-1 pr-2 opacity-50 cursor-default group shrink-0"
+                    className="flex items-center gap-1 pr-1 md:pr-2 opacity-50 cursor-default group shrink-0"
                 >
                     <div className="w-7 h-7 bg-gray-500 rounded-full flex items-center justify-center shadow-sm border border-white/30 grayscale">
                         <ArrowRight className="w-4 h-4 text-white" strokeWidth={3} />
                     </div>
-                    <span className="text-[11px] text-gray-600">Forward</span>
+                    <span className="text-[11px] text-gray-600 hidden md:inline">Forward</span>
                 </button>
 
                 <div className="h-6 w-[1px] bg-[#aca899] mx-1" />
@@ -212,7 +212,7 @@ const ModernXPToolbar = ({
                         className="flex items-center gap-1 px-2 py-1 hover:bg-white/40 border border-transparent hover:border-black/10 rounded-sm shrink-0"
                     >
                         <img src={iconTheme} alt="Theme" className="w-4 h-4" />
-                        <span className="text-[11px] text-black">Light/Dark</span>
+                        <span className="text-[11px] text-black hidden sm:inline">Theme</span>
                     </button>
                 )}
             </div>
