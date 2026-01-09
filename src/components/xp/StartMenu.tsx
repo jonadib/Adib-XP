@@ -77,6 +77,7 @@ const StartMenu = ({
       {/* Main Start Menu Container */}
       <div
         className={`fixed bottom-[30px] left-0 ${isMobile ? 'w-[280px]' : 'w-[400px] sm:w-[480px]'} rounded-t-lg shadow-2xl z-[5000] overflow-visible animate-in fade-in slide-in-from-bottom-5 duration-200`}
+        onClick={(e) => e.stopPropagation()}
         style={{
           boxShadow: '2px 0px 10px rgba(0,0,0,0.5)',
           borderTopLeftRadius: '8px',
@@ -183,7 +184,12 @@ const StartMenu = ({
             {/* RECENTLY USED (With Side Submenu) */}
             <div
               className={`relative flex items-center justify-between px-2 py-1 cursor-pointer rounded-sm transition-colors ${showRecentlyUsed ? 'bg-[#316ac5] text-white' : 'hover:bg-[#316ac5] hover:text-white text-[#00135b]'}`}
-              onClick={() => isMobile && setShowRecentlyUsed(!showRecentlyUsed)}
+              onClick={(e) => {
+                if (isMobile) {
+                  e.stopPropagation();
+                  setShowRecentlyUsed(!showRecentlyUsed);
+                }
+              }}
               onMouseEnter={() => !isMobile && setShowRecentlyUsed(true)}
               onMouseLeave={() => !isMobile && setShowRecentlyUsed(false)}
             >
